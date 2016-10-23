@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ion-header-bar</title>
+  <link rel="stylesheet" type="text/css" href="/libs/ionic/css/ionic.min.css">
+  <script src="/libs/ionic/js/ionic-angular.min.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script src="/libs/ionic/js/ionic.bundle.min.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button" ng-click="doSomething()">左侧按钮</button>
+    </div>
+    <h1 class="title">Title!</h1>
+    <div class="buttons">
+      <button class="button">右侧按钮</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    我是主体
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-assertive">
+    <div class="buttons">
+      <button class="button">左侧按钮</button>
+    </div>
+    <h1 class="title">Title!</h1>
+    <div class="buttons" ng-click="doSomething()">
+      <button class="button">右侧按钮</button>
+    </div>
+  </ion-footer-bar>
+</body>
+</html>

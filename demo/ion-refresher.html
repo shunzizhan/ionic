@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ion-refresher </title>
+  <link rel="stylesheet" type="text/css" href="/libs/ionic/css/ionic.min.css">
+  <script src="/libs/angular/angular.min.js" type="text/javascript" charset="utf-8" async defer></script>
+  <!--<script src="/libs/ionic/js/ionic-angular.min.js" type="text/javascript" charset="utf-8" async defer></script>-->
+  <script src="/libs/ionic/js/ionic.bundle.min.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+  <ion-content ng-app="testApp" ng-controller="MyController">
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item ng-repeat="item in items"></ion-item>
+    </ion-list>
+  </ion-content>
+</body>
+<script>
+  angular.module('testApp', ['ionic'])
+  .controller('MyController', function($scope, $http) {
+    $scope.items = [1,2,3];
+    $scope.doRefresh = function() {
+      $http.get('/new-items')
+       .success(function(newItems) {
+         $scope.items = newItems;
+       })
+       .finally(function() {
+         // 停止广播ion-refresher
+         $scope.$broadcast('scroll.refreshComplete');
+       });
+    };
+  });
+</script>
+</html>
