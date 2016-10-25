@@ -1,0 +1,129 @@
+<ion-view title="税费计算器" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header taxes">
+	<ul class="taxes-tab">
+		<li ng-class="status == 1 ? 'cur' : '' " ng-click="setStatus(1);setFrom()">新房</li>
+		<li ng-class="status == 2 ? 'cur' : '' " ng-click="setStatus(2);setFrom()">二手房</li>
+	</ul>
+	<div class="cf taxes-box">
+		<div class="cf taxes-main" ng-show="status == 1">
+			<form ng-submit="taxesNew()">
+			<ul class="cf taxes-new">
+				<li class="cf">
+					<span class="text">单 价：</span>
+					<input type="text" placeholder="大于0的数字" ng-model='taxesNewData.price'/>
+					<span class="text">元/平米</span>
+				</li>
+				<li class="cf">
+					<span class="text">面 积：</span>
+					<input type="text" placeholder="大于0的数字" ng-model='taxesNewData.area'/>
+					<span class="text">平 米</span>
+				</li>
+				<li class="cf">
+					<span class="text-l">房屋坐落：</span>
+					<label class="select">
+						<i class="arrow"></i>
+						<select ng-model='taxesNewData.place' ng-options="place.val as place.text for place in places" ng-init="taxesNewData.place = 1"></select>
+					</label>
+				</li>
+				<li class="cf">
+					&nbsp;&nbsp;家庭唯一住房：
+					<label class="toggle f-r">
+					<input type="checkbox" ng-model='taxesNewData.only' ng-init="taxesNewData.only = false">
+					<div class="track">
+					<div class="handle"></div>
+					</div>
+					</label>
+				</li>
+				<li class="cf">
+					&nbsp;&nbsp;是否别墅
+					<label class="toggle f-r">
+					<input type="checkbox"ng-model='taxesNewData.villa' ng-init="taxesNewData.villa = false">
+					<div class="track">
+					<div class="handle"></div>
+					</div>
+					</label>
+				</li>
+			</ul>
+			<div class="cf btn-submit">
+				<button type="submit">开 始 计 算</button>
+			</div>
+			</form>
+		</div>
+		<div class="cf taxes-main" ng-show="status == 2">
+			<form ng-submit="taxesOld()">
+			<ul class="cf taxes-old">
+				<li class="cf">
+					<span class="text">面 积：</span>
+					<input type="text" placeholder="大于0的数字" ng-model='taxesOldData.area'/>
+					<span class="text">平 米</span>
+				</li>
+				<li class="cf">
+					<span class="text">总 价：</span>
+					<input type="text" placeholder="大于0的数字" ng-model='taxesOldData.allPrice'/>
+					<span class="text">万 元</span>
+				</li>
+				<li class="cf">
+					<span class="text-l">房屋坐落：</span>
+					<label class="select">
+						<i class="arrow"></i>
+						<select ng-model='taxesOldData.place' ng-options="place.val as place.text for place in places" ng-init="taxesOldData.place = 1"></select>
+					</label>
+				</li>
+				<li class="cf">
+					<span class="text-l">计征方式：</span>
+					<label class="select">
+						<i class="arrow"></i>
+						<select ng-model='taxesOldData.way' ng-options="item.val as item.text for item in way" ng-init="taxesOldData.way = 1"></select>
+					</label>
+				</li>
+				<li class="cf" ng-show="taxesOldData.way == 2">
+					<span class="text">差 价：</span>
+					<input type="text" placeholder="大于0的数字" ng-model='taxesOldData.agio'/>
+					<span class="text">万 元</span>
+				</li>
+				<li class="cf">
+					<span class="text-l">房屋类型：</span>
+					<label class="select">
+						<i class="arrow"></i>
+						<select ng-model='taxesOldData.type' ng-options="item.val as item.text for item in type" ng-init="taxesOldData.type = 1"></select>
+					</label>
+				</li>
+				<li class="cf">
+					&nbsp;&nbsp;房产购置是否满两年：
+					<label class="toggle f-r">
+					<input type="checkbox" ng-model='taxesOldData.twoYears' ng-init="taxesOldData.twoYears = false">
+					<div class="track">
+					<div class="handle"></div>
+					</div>
+					</label>
+				</li>
+				<li class="cf">
+					&nbsp;&nbsp;买方唯一住房：
+					<label class="toggle f-r">
+					<input type="checkbox" ng-model='taxesOldData.toOnly' ng-init="taxesOldData.toOnly = false">
+					<div class="track">
+					<div class="handle"></div>
+					</div>
+					</label>
+				</li>
+				<li class="cf">
+					&nbsp;&nbsp;卖方唯一住房：
+					<label class="toggle f-r">
+					<input type="checkbox" ng-model='taxesOldData.fromOnly' ng-init="taxesOldData.fromOnly = false">
+					<div class="track">
+					<div class="handle"></div>
+					</div>
+					</label>
+				</li>
+			</ul>
+			<div class="cf btn-submit">
+				<button type="submit">开 始 计 算</button>
+			</div>
+			</form>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

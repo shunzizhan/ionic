@@ -1,0 +1,24 @@
+<ion-view title="客户报备">
+  <ion-content class="has-header report-form">
+    <div class="list">
+      <form ng-submit="submit()">
+      <div class="item item-input item-stacked-label right-arrow">
+        <span class="input-label">意向楼盘:</span>
+        <input type="text" placeholder="请选择用户意向楼盘" ng-model='BuildName' readonly ng-click="propertyChoose()">
+      </div>
+      <div class="item item-input item-stacked-label">
+        <span class="input-label">客户姓名:</span>
+        <input type="text" placeholder="请输入用户姓名" ng-model='reportData.RealName'>
+      <!--   <a href="javascript:;" ng-click="chooseCard()"><i class="icon ion-ios7-people"></i></a> -->
+      </div>
+      <div class="item item-input item-stacked-label">
+        <span class="input-label">客户手机号:</span>
+        <input type="text" placeholder="请输入用户手机号" ng-model='reportData.Phone'>
+      </div>
+      <p class="btn-submit">
+        <button type="submit">提 交</button>
+      </p>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

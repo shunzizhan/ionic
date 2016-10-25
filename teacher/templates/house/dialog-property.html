@@ -1,0 +1,47 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">楼盘名称</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input class="ng-pristine ng-valid ng-touched" placeholder="请输入期望地点" ng-model="searchkey.PLKey" type="text">
+      </label>
+      <span class="search" ng-click="getDataPList()">搜索</span>
+      <!-- <a href="" class="btn btn-blue">搜索</a> -->
+    </div>
+    <!--<ion-content>
+    <ion-refresher
+			    pulling-text="松开刷新..."
+			    on-refresh="plistWeDoRefresh()">
+			</ion-refresher>-->
+	    <div class="list">
+		    	    	
+
+	    		<!--<div class="item" ng-repeat="propertyList in propertyList" ng-click="propertyListClick('{{$index}}')">
+	    			{{propertyList.fname}}
+	    			</div>-->
+            <!-- 20160804 -->
+			      <!-- <a class="item" href="javascript:;"  ng-repeat="propertyList in propertyList" ng-click="propertyListClick('{{propertyList | json}}')" val-add="{{propertyList.Address}}{{propertyList.RegionAndDistrict}}">
+			      {{propertyList.fname}}
+			      </a> -->
+            <a class="item" href="javascript:;"  ng-repeat="propertyList in propertyList" ng-click="propertyListClick({{propertyList}})" val-add="{{propertyList.address}}{{propertyList.districtName}}">
+            {{propertyList.residentialName}}
+            </a>
+		    	
+		 
+		        
+	    </div>
+	    <!--<ion-infinite-scroll
+		    	ng-if="plistWeNomore"  						
+		    	on-infinite="plistWeLoadMore()"
+		    	distance="1%">
+		  	</ion-infinite-scroll>
+		</ion-content>  	-->
+  </ion-content>
+</div>
+

@@ -1,0 +1,38 @@
+<ion-view title="楼盘详情">
+  <ion-content class="has-header sell-detail">
+    <div class="img-box"><img src="{{sellDetail.ImageID}}" alt=""></div>
+    <ul class="cf box detail-list">
+      <li class="title">{{sellDetail.BuildName}}</li>
+      <li>均价：{{ sellDetail.Avegprice }}</li>
+      <li>地址：{{sellDetail.Address}}</li>
+      <li>开盘时间：{{sellDetail.OpeningDate | time}}</li>
+      <li>主力户型：<span ng-repeat="item in sellDetail.AreaListINfo track by $index">{{item.RoomName}}&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+      <li>目标客户：{{sellDetail.custerm}}</li>
+    </ul>
+    <div class="box">
+      <h4><i class="icon ion-flag"></i>购房优惠</h4>
+      <p>{{sellDetail.Title}}</p>
+      <br>
+      <h4><i class="icon ion-flag"></i>佣金激励</h4>
+      <p>{{sellDetail.Excitation}}</p>
+    </div>
+    <div class="box">
+      <h4><i class="icon ion-flag"></i>合作规则</h4>
+      <p><b>合作有效期：</b>有效期截止 {{sellDetail.ExpDate | time}}</p>
+      <p><b>保护期：</b>报备后72小时内，意向购房者归属该经纪人，72小时内经纪人将意向购房者带至项目现场完成信息确认后，则截止合作有效期内，意向购房者归属该经纪人。</p>
+      <p><b>经纪人带看规则：</b>经纪人邀约意向购房者至项目现场看房，需要提前至少30分钟登录亿房宝手机APP报备意向购房者信息。</p>
+      <p><b>佣金结算：</b>亿房在收到开发商成交确认后向经纪人结佣。</p>
+    </div>
+    <div class="box">
+      <h4><i class="icon ion-flag"></i>楼盘卖点</h4>
+      <p><b>项目配套：</b>{{sellDetail.bank}}。{{sellDetail.business}}。{{sellDetail.medical}}。{{sellDetail.school}}</p>
+      <p><b>交通情况：</b>{{sellDetail.busstation}}。{{sellDetail.subwaystation}}</p>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="sell-detail">
+    <ul class="cf foot">
+      <li ng-click="call(sellDetail.Phone,$event)"><i class="icon ion-ios7-telephone-outline"></i>案场经理</li>
+      <li><a href="#/app/report/{{sellDetail.BaseID}}"><i class="icon ion-ios7-personadd-outline"></i>报备客户</a></li>
+    </ul>
+  </ion-footer-bar>
+</ion-view>

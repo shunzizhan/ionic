@@ -1,0 +1,33 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">选择经纪人</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+  	<form id="client">
+    <div class="list client-list">
+    	
+        <label class="item item-radio" ng-repeat="cds in clientdatas" ng-click="reclient('{{cds | json}}')">
+          <input type="radio" name="clientval" value="{{cds.fname}}" ng-model="client.data">
+          <div class="item-content">
+          <p>联系人:{{cds.fname}}</p>
+          <p>电话:{{cds.fphone}}</p>
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>    	
+    	
+        <!--<label class="item item-radio">
+          <input type="radio" name="client">
+          <div class="item-content">
+          <p>联系人:小摊</p>
+          <p>电话:12124545454545</p>
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>        -->
+    </div>
+    </form>
+  </ion-content>
+</div>
+

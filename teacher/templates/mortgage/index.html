@@ -1,0 +1,177 @@
+<ion-view title="房贷计算器" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header mortgage">
+        <ul class="mortgage-tab">
+            <li ng-class="status == 1 ? 'cur' : '' " ng-click="setStatus(1);setFrom()">商业贷款</li>
+            <li ng-class="status == 2 ? 'cur' : '' " ng-click="setStatus(2);setFrom()">公积金</li>
+            <li ng-class="status == 3 ? 'cur' : '' " ng-click="setStatus(3);setFrom()">组合贷款</li>
+        </ul>
+        <div class="cf mortgage-box">
+            <div class="cf mortgage-main" ng-show="status == 1">
+                <form ng-submit="mortgageOne()">
+                    <ul class="cf mortgage-business">
+                        <li class="cf">
+                            <span class="text-l">还款方式：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""  ng-init="data1.way=1"    ng-model="data1.way "
+                                        ng-options='mortgageWay.val as  mortgageWay.text for mortgageWay in mortgageWays'>
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">贷款总额：</span>
+                            <input type="number" placeholder="大于0的数字" ng-model="data1.mortgageData"/>
+                            <span class="text">万 元</span>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">按揭年数：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""  ng-init="data1.year=20"  ng-model="data1.year"
+                                        ng-options="mortgageYear.val as mortgageYear.text for mortgageYear in mortgageYears ">
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">选择利率：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name="" id=""  ng-init="data1.rate=8" ng-model="data1.rate"
+                                        ng-options="mortgageRate.val as mortgageRate.text for mortgageRate in mortgageRates ">
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">贷款利率：</span>{{data1.mortgageRate}}
+
+                        </li>
+                    </ul>
+                    <div class="cf btn-submit">
+                        <button type="submit">开 始 计 算</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="cf mortgage-main" ng-show="status == 2">
+                <form ng-submit="mortgageTwo()">
+                    <ul class="cf mortgage-fund">
+                        <li class="cf">
+                            <span class="text-l">还款方式：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""   ng-init="data2.way=1" ng-model="data2.way "
+                                        ng-options='mortgageWay.val as  mortgageWay.text for mortgageWay in mortgageWays'>
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">贷款总额：</span>
+                            <input type="number" placeholder="大于0的数字" ng-model="data2.mortgageData"/>
+                            <span class="text">万 元</span>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">按揭年数：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name="" ng-init="data2.year=20" ng-model="data2.year"
+                                        ng-options="mortgageYear.val as mortgageYear.text for mortgageYear in mortgageYears ">
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">选择利率：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""   ng-init=" data2.rate=8" ng-model="data2.rate"
+                                        ng-options="mortgageRate.val as mortgageRate.text for mortgageRate in mortgageRates ">
+
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">贷款利率：</span>{{data2.mortgageRate}}
+
+                        </li>
+                    </ul>
+                    <div class="cf btn-submit">
+                        <button type="submit">开 始 计 算</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+            <div class="cf mortgage-main" ng-show="status == 3">
+                <form ng-submit="mortgageThree()">
+                    <ul class="cf mortgage-mix">
+                        <li class="cf">
+                            <span class="text-l">还款方式：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""  ng-init="data3.way=1" ng-model="data3.way "
+                                        ng-options='mortgageWay.val as  mortgageWay.text for mortgageWay in mortgageWays'>
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">商&nbsp;&nbsp;业：</span>
+                            <input type="number" placeholder="大于0的数字" ng-model="data3.mortgageData_B"/>
+                            <span class="text">万 元</span>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">公积金：</span>
+                            <input type="number" placeholder="大于0的数字" ng-model="data3.mortgageData_P"/>
+                            <span class="text">万 元</span>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">按揭年数：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""  ng-init="data3.year=20" - ng-model="data3.year"
+                                        ng-options="mortgageYear.val as mortgageYear.text for mortgageYear in mortgageYears ">
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">选择利率：</span>
+                            <label class="select">
+                                <i class="arrow"></i>
+                                <select name=""  ng-init="data3.rate=8"  ng-model="data3.rate"
+                                        ng-options="mortgageRate.val as mortgageRate.text for mortgageRate in mortgageRates ">
+
+                                </select>
+                            </label>
+                        </li>
+                        <li class="cf">
+                            <span class="text-l">贷款利率：</span>
+                            商业贷款 {{data3.mortgageRate_b}},公积金{{data3.mortgageRate_p}}
+                        </li>
+                    </ul>
+                    <div class="cf btn-submit">
+                        <button type="submit">开 始 计 算</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+  <title>ion-header-bar</title>
+  <link rel="stylesheet" type="text/css" href="/libs/ionic/css/ionic.min.css">
+  <script src="/libs/ionic/js/ionic.bundle.min.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body ng-controller="MyCtrl">
+  <ion-tabs>
+
+    <ion-tab title="Tab 1">
+      你好，标签1！
+      <button ng-click="selectTabWithIndex(1)">选择标签2</button>
+    </ion-tab>
+    <ion-tab title="Tab 2">你好标签2！</ion-tab>
+
+  </ion-tabs>
+</body>
+<script>
+  function MyCtrl($scope, $ionicTabsDelegate) {
+    $scope.selectTabWithIndex = function(index) {
+      $ionicTabsDelegate.select(index);
+    }
+  }
+</script>
+</html>

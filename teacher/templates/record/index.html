@@ -1,0 +1,64 @@
+<ion-view title="操作记录" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header record" scroll="false">
+    		<ul class="cf record-tab">
+    			<li ng-click="chooseBtn(1)">{{OperTypeText}}<i class="arrow"></i>
+                </li>
+    			<li ng-click="chooseBtn(2)">{{BusinessTypeText}}<i class="arrow"></i>
+                </li>
+    			<li ng-click="chooseBtn(3)">{{TimeText}}<i class="arrow"></i>
+                </li>
+    		</ul>
+            <div class="record-choose">
+                <ul class="cf" ng-show="choose == 1">
+                    <li ng-click="setChoose('OperType','操作类型')">操作类型</li>
+                    <li ng-click="setChoose('OperType','发布房源')">发布房源</li>
+                    <li ng-click="setChoose('OperType','取消发布')">取消发布</li>
+                    <li ng-click="setChoose('OperType','删除房源')">删除房源</li>
+                    <!--<li ng-click="setChoose('OperType','删除房源图片')">删除房源图片</li>-->
+                    <li ng-click="setChoose('OperType','新增房源')">新增房源</li>
+                    <li ng-click="setChoose('OperType','重新发布')">重新发布</li>
+                    <li ng-click="setChoose('OperType','更新房源')">更新房源</li>
+                </ul>
+                <ul class="cf" ng-show="choose == 2">
+                    <li ng-click="setChoose('BusinessType','房屋类型')">房屋类型</li>
+                    <li ng-click="setChoose('BusinessType','住宅出售')">住宅出售</li>
+                    <li ng-click="setChoose('BusinessType','住宅出租')">住宅出租</li>
+                </ul>
+                <ul class="cf" ng-show="choose == 3">
+                    <li ng-click="setChoose('Time','时间')">时间</li>
+                    <li ng-click="setChoose('Time','今天')">今天</li>
+                    <li ng-click="setChoose('Time','昨天')">昨天</li>
+                    <li ng-click="setChoose('Time','一周内')">一周内</li>
+                </ul>
+            </div>
+            <ion-content class="record-content">
+            <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+            </ion-refresher>
+    		<ul class="record-list">
+                <li ng-repeat="item in logListData track by $index" ng-click="chooseBtn(0)">
+                    <p class="cf">
+                    	<span class="this-title">{{item.BusinessType == 1 ? item.Fid : item.Fid2}}</span> 
+                    	<span class="ft-gray f-r" style="width: 60%; white-space: nowrap; text-overflow: ellipsis; text-align: right;">{{item.CreateDate | time}}</span>
+                    </p>
+                    <p style="text-align: center;">
+                        <!--<span>{{item.UserName}}</span>-->
+                        <span style="text-align: left; float: left;">{{item.HouseType | HouseTypeOne}}</span>
+                        <span class="ft-blue" style="margin: 0;">{{item.HouseType | HouseTypeTwo}}</span>
+                        <span class="ft-orange f-r" style="margin: 0;">{{item.OpearType}}</span>
+                    </p>
+                </li>
+    		</ul>
+            <p class="nomore" ng-hide="nomore"><span>没有更多数据了</span></p>
+            <ion-infinite-scroll
+                ng-if="nomore"
+                on-infinite="loadMore()"
+                distance="1%">
+            </ion-infinite-scroll>
+            </ion-content>
+  </ion-content>
+</ion-view>

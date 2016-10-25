@@ -1,0 +1,216 @@
+<ion-view title="{{pagetitle}}">
+
+  <ion-content class="has-header house-add">
+   <div class="list">
+   	<form id="addhouse">
+		<div class="item right-arrow">
+			<span class="title">楼盘名称<em>:</em></span>
+			<div class="item-content" ng-click="propertyChoose()" >
+				<input type="text" class="full" placeholder="请选择楼盘名称" name="BuildName" ng-model="housedata.BuildName" readonly />
+				<!-- <input type="hidden" name="BuildingID" ng-model="housedata.BuildingID" placeholder="请选择所在楼盘"/> -->
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">楼盘地址<em>:</em></span>
+			<div class="item-content"><input type="text" class="full" placeholder="1 ~ 20个字" name="Address" ng-model="housedata.Address" /></div>
+		</div>
+		<div class="item right-arrow">
+			<span class="title">所在区域<em>:</em></span>
+			<div class="item-content" ng-click="areaChoose()">
+				<input type="text" class="full" placeholder="请选择所在区域" name="RegionAndDistrict" ng-model="housedata.RegionAndDistrict" readonly />
+<!-- 	            <input type="hidden" name="RegionName" ng-model="housedata.RegionName"    />  
+	            <input type="hidden" name="RegionID" ng-model="housedata.RegionID" />
+	            <input type="hidden" name="DistrictName" ng-model="housedata.DistrictName"  />  
+	            <input type="hidden" name="DistrictID" ng-model="housedata.DistrictID" /> -->
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">建筑面积<em>:</em></span>
+			<div class="item-content">
+				<div class="i-area full">
+					<input type="number" string-to-number class="" placeholder="大于0" ng-model="housedata.BAre" />
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">租&nbsp;&nbsp;&nbsp;&nbsp;金<em>:</em></span>
+			<div class="item-content">
+				<div class="i-price2 full">
+					<input type="number" class="full"string-to-number class="" placeholder="大于0" ng-model="housedata.Price" />
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">付款方式<em>:</em></span>
+			<div class="item-content">
+				<div class="full i-way">
+					<em>押</em>
+					<input type="number" string-to-number class="" placeholder="1" ng-model="housedata.PayInfoY" />
+					<em>个月</em>
+					<em>，付</em>
+					<input type="number" string-to-number class="" placeholder="1" ng-model="housedata.PayInfoZ" />
+					<em>个月</em>
+				</div>
+			</div>
+		</div>
+				<div class="item">
+			<span class="title">所在楼层<em>:</em></span>
+			<div class="item-content">
+				<div class="i-floor full">
+					<input type="number" string-to-number class="" placeholder="大于0" ng-model="housedata.Floor" />
+					<em>层,共</em>
+					<input type="number" string-to-number class="" placeholder="大于0" ng-model="housedata.Floors" />
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">户&nbsp;&nbsp;&nbsp;&nbsp;型<em>:</em></span>
+			<div class="item-content">
+				<div class="full i-house">
+					<input type="number" string-to-number class="" placeholder="1" ng-model="housedata.Rooms" />
+					<em>室</em>
+					<input type="number" string-to-number class="" placeholder="1" ng-model="housedata.Halls" />
+					<em>厅</em>
+					<input type="number" string-to-number class="" placeholder="1" ng-model="housedata.Toilets" />
+					<em>卫</em>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">租赁类型<em>:</em></span>
+			<div class="item-content">
+				<label class="select full"  ng-show="housedata.new==true">
+					<i class="arrow"></i>
+					<!--<select name="" id="" ng-model="housedata.BusinessType">
+						<option value="2">整租</option>
+						<option value="5">分租</option>
+					</select>-->
+					<select ng-model="housedata.BusinessType" ng-options="m.val as m.text for m in houseBusinessTypeData" ng-init="housedata.BusinessType = '2'">
+					</select>
+				</label>
+				<span ng-show="housedata.new==false">{{housedata.BusinessTypeCopy}}</span>
+			</div>
+		</div>
+		<div class="item" ng-show="housedata.BusinessType == 5">
+			<span class="title">合租方式<em>:</em></span>
+			<div class="item-content">
+				<label class="select full">
+					<i class="arrow"></i>
+		            <select name="Roomz" ng-model="housedata.Roomz" ng-init="housedata.Roomz = 1">
+		             	<option value="1" selected="selected">单间</option>
+		             	<option value="2">床位</option>
+		             	<option value="3">隔断间</option>
+		            </select>
+				</label>				
+				<!--一行显示后一个不能点击
+				<label class="select full">
+		            <select name="Roomz" style="width:40%;" ng-model="housedata.Roomz" ng-init="housedata.Roomz = 1">
+		             	<option value="1" selected="selected">单间</option>
+		             	<option value="2">床位</option>
+		             	<option value="3">隔断间</option>
+		            </select>/&nbsp;&nbsp;
+		            <select name="Limit" style="width:50%;" ng-model="housedata.Limit" ng-init="housedata.Limit = 1">
+		             	<option value="1" selected="selected">性别不限</option>
+		             	<option value="2">限女生</option>
+		             	<option value="3">限男生</option>
+		             	<option value="4">限夫妻</option>
+		            </select>
+				</label>-->
+				
+			</div>
+		</div>
+		<div class="item" ng-show="housedata.BusinessType == 5">
+			<span class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>&nbsp;&nbsp;</em></span>
+			<div class="item-content">
+				<label class="select full">
+					<i class="arrow"></i>
+					<select name="Limit" ng-model="housedata.Limit" ng-init="housedata.Limit = 1">
+		             	<option value="1" selected="selected">性别不限</option>
+		             	<option value="2">限女生</option>
+		             	<option value="3">限男生</option>
+		             	<option value="4">限夫妻</option>
+		            </select>
+				</label>				
+			</div>
+		</div>		
+		<div class="item right-arrow">
+			<span class="title">电器设施<em>:</em></span>
+			<div class="item-content" ng-click="equiChoose()">
+				<input type="text" class="full" placeholder="请选择电器设施" name="Equipment" ng-model="housedata.Equipment" readonly />
+			</div>
+		</div>
+		<div class="item right-arrow">
+			<span class="title">基础设施<em>:</em></span>
+			<div class="item-content" ng-click="baseChoose()">
+				<input type="text" class="full" placeholder="请选择基础设施" name="BaseService" ng-model="housedata.BaseService" readonly />
+			</div>
+		</div>
+		<div class="item right-arrow">
+			<span class="title">家&nbsp;&nbsp;&nbsp;&nbsp;具<em>:</em></span>
+			<div class="item-content" ng-click="furniChoose()">
+				<input type="text" class="full" placeholder="请选择家具" name="Furniture" ng-model="housedata.Furniture"  readonly/>
+			</div>
+		</div>		<div class="item">
+			<span class="title">个性标签<em>:</em></span>
+			<!--<div class="item-content" ng-click="tagChoose()">无</div>-->
+			<div class="item-content">
+				<label class="select full">
+					<i class="arrow"></i>
+					<!--<select name="" id="" ng-model="housedata.Tag" ng-init="housedata.Tag = 0" ng-options="1 as 2 for 3 in 4">
+		             	<option value="0"> 无</option>
+		                <option value="1">公园周边</option>
+		                <option value="2">沿江沿湖</option>
+		                <option value="3">电梯洋房</option>
+		                <option value="4">地铁沿线</option>
+		                <option value="5">学区房</option>
+		                <option value="6">新空毛坯</option>
+		                <option value="7">即买即住</option> 	  
+					</select>-->
+					<select ng-model="housedata.Tag " ng-options="m.val as m.text for m in houseTagData" ng-init="housedata.Tag = '0'">
+					</select>
+				</label>
+			</div>		</div>
+		<div class="item right-arrow">
+			<span class="title">经&nbsp;纪&nbsp;人<em>:</em></span>
+			<div class="item-content" ng-click="clientChoose()">
+				<input type="text" class="full" placeholder="请选择经纪人" name="linkmanStr" ng-model="housedata.linkmanStr"  readonly/>
+<!-- 	            <input type="hidden" name="linkman" ng-model="housedata.linkman" />  
+	            <input type="hidden" name="EmpID" ng-model="housedata.EmpID" />
+	            <input type="hidden" name="phone1" ng-model="housedata.phone1"  />  -->
+	        </div>
+		</div>
+		<div class="item">
+			<span class="title">标&nbsp;&nbsp;&nbsp;&nbsp;题<em>:</em></span>
+			<div class="item-content"><input type="text" class="full" placeholder="吸引人的标题能提高关注度！" ng-model="housedata.title"/></div>
+		</div>
+		<div class="item right-arrow">
+			<span class="title">更多信息<em>:</em></span>
+			<div class="item-content" ng-click="moreChoose()">点击选择</div>
+		</div>
+		<div class="item">
+			<span class="title">房源图片<em>:</em></span>
+			<div class="item-content">
+				<ul class="uploadImg">
+					<li ng-repeat="item in imgUrl track by $index"><img ng-src="{{item.url}}" src="{{item.url}}" alt="" ng-click="deleteImgOne({{item}},'{{$index}}')"/></li>
+					<a href="javascript:;" class="uploadImgBtn" ng-click="chooseImg()">+</a>
+				</ul>
+			</div>
+		</div>
+<!-- 		<input type="hidden" name="housedata.FID" />
+		<input type="hidden" name="housedata.HouseID" /> -->
+		<p class="btn-submit">
+			<span ng-show="formstu==1">
+				<button type="button" ng-click="saveHouse()">暂存待发布</button>&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" ng-click="publishHouse()">立即发布</button><br>
+				<!--<button type="button" ng-click="updateImg()">上传图片</button>-->
+			</span>
+			<span ng-show="formstu==2">
+				<button type="button" ng-click="UpdateHouse()">确认修改</button>
+			</span>
+		</p>
+		</form>
+	</div>
+  
+  </ion-content>
+ 
+</ion-view>

@@ -1,0 +1,21 @@
+<ion-view title="报备成功">
+  <ion-content class="has-header report-result">
+    <div class="box cf">
+      <span class="f-l"><i class="icon ion-ios7-checkmark-empty"></i></span>
+      <p style="padding-left: 70px;">客户<b class="ft-orange">{{reportResult.name}}</b>成功报备，案场经理会在<b class="ft-orange">24</b>小时内确认客户有效性，而后，您方可将客户带至案场，请您务必在<b class="ft-orange">72</b>小时内完成带看，否则报备失效。</p>
+    </div>
+    <div class="box cf">
+      <span class="f-l" style="width:70px;" ng-click="call('{{reportResult.phone}}',$event)"><i class="icon ion-ios7-telephone-outline"></i>案场经理</span>
+      <p style="padding-left: 70px;">如果您急于将客户带至案场，可直接拨打案场经理电话。</p>
+    </div>
+    <ul class="result-list cf">
+      <li><p>报备成功</p><p>{{reportResult.start | timeMain}}</p></li>
+      <li class="cur"><p>等待案场经理处理</p><p>&nbsp;</p></li>
+      <li><p>报备失效</p><p>{{reportResult.end | timeMain}}</p></li>
+    </ul>
+    <p class="btn-submit">
+      <a href="#/app/report/">继续报备</a>
+      <a href="#/app/sell">完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成</a>
+    </p>
+  </ion-content>
+</ion-view>

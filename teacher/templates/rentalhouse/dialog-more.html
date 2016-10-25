@@ -1,0 +1,100 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">更多信息</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+    <div class="list">
+		<div class="item">
+			<span class="title">装修情况<em>:</em></span>
+			<div class="item-content">
+				<label class="select full">
+					<i class="arrow"></i>
+					<!--<select name="" id="" ng-model="housedata.Fitment">
+						<option value="未装" selected="selected">未装</option>
+						<option value="简单装修">简单装修</option>
+						<option value="中档装修">中档装修</option>
+						<option value="高档装修">高档装修</option>
+					</select>-->
+					<select ng-model="housedatamore.Fitment" ng-options="m.val as m.text for m in houseFitmentData" ng-init="housedatamore.Fitment = '未装'">			
+					</select>					
+				</label>
+			</div>
+		</div>    	
+    	
+      <div class="item">
+        <span class="title">朝&nbsp;&nbsp;&nbsp;&nbsp;向<em>:</em></span>
+        <div class="item-content">
+          <label class="select full">
+            <i class="arrow"></i>
+            <select name="Farward" id="" ng-model="housedatamore.Farward">
+              <option value="1">东</option>
+              <option value="2">南</option>
+              <option value="3">西</option>
+              <option value="4">北</option>
+              <option value="5">东南</option>
+              <option value="6">西南</option>
+              <option value="7">西北</option>
+              <option value="8">东北</option>
+              <option value="9">南北</option>
+              <option value="10">东西</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="item">
+        <span class="title">建筑类型<em>:</em></span>
+        <div class="item-content">
+          <label class="select full">
+            <i class="arrow"></i>
+            <select name="HouseStru" id="" ng-model="housedatamore.HouseStru">
+              <option value="1">多层</option>
+              <option value="2">小高层</option>
+              <option value="3">高层</option>
+              <option value="4">别墅</option>
+              <option value="5">其他</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="item right-arrow">
+        <span class="title">建成时间<em>:</em></span>
+        <div class="item-content"><input type="text" 
+            class="full" 
+            placeholder="点击选择日期" 
+            ng-model="housedatamore.HouseAge" 
+            name="HouseAge" 
+            ng-click="opendateModal('housedatamore.HouseAge')" 
+            readonly></div>
+      </div>
+		<div class="item">
+			<span class="title">入住时间<em>:</em></span>
+			<div class="item-content"><input type="text" class="full" placeholder="" name="Fintime" ng-model="housedatamore.Fintime" /></div>			
+		</div>
+      <div class="item">
+        <span class="title">看房时间<em>:</em></span>
+        <div class="item-content">
+          <label class="select full">
+            <i class="arrow"></i>
+            <select name="" id="" ng-model="housedatamore.LookType">
+              <option value="1">随时看房</option>
+              <option value="2">非工作时间</option>
+              <option value="3">电话预约</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      
+      <div class="item" ng-show=" housedata.new == true">
+        <span class="title">房源描述<em>:</em></span>
+        <div class="item-content"><textarea name="" id="" class="full" ng-model="housedatamore.note"></textarea></div>
+      </div>
+      <p class="btn-submit">
+        <button type="submit" ng-click="moreSure()">确 定</button>
+      </p>
+    </div>
+  </ion-content>
+</div>
+

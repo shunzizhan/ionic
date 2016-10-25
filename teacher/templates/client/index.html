@@ -1,0 +1,66 @@
+<ion-view title="客户管理" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-plus-round f-r" ng-click="closeMenu(this);go('app.clientAdd')"></button>
+    <button class="button button-icon icon ion-ios7-search f-r" ng-click="sBox()"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header client" scroll="false">
+    <div class="list list-inset" ng-show="searchBox">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="请输入手机号码或者姓名" ng-model="kw.KeyWord"/>
+      </label>
+      <span class="search" ng-click="loadSearch()">搜索</span>
+      <!-- <a href="" class="btn btn-blue">搜索</a> -->
+    </div>
+
+    <ul class="cf client-tab">
+      <li ng-click="chooseBtn(1)">{{IntentionText}}<i class="arrow"></i>
+      </li>
+      <li ng-click="chooseBtn(2)">{{StatusText}}<i class="arrow"></i>
+      </li>
+    </ul>
+    <div class="client-choose">
+        <ul class="cf" ng-show="choose == 1">
+            <li ng-click="setChoose('intention','需求-不限')">需求-不限</li>
+            <li ng-click="setChoose('intention','求购住宅')">求购住宅</li>
+            <li ng-click="setChoose('intention','出售住宅')">出售住宅</li>
+            <li ng-click="setChoose('intention','求租住宅')">求租住宅</li>
+            <li ng-click="setChoose('intention','出租住宅')">出租住宅</li>
+        </ul>
+        <ul class="cf" ng-show="choose == 2">
+            <li ng-click="setChoose('status','状态-不限')">状态-不限</li>
+            <li ng-click="setChoose('status','有效')">有效</li>
+            <li ng-click="setChoose('status','暂缓')">暂缓</li>
+            <li ng-click="setChoose('status','无效')">无效</li>
+        </ul>
+    </div>
+    <div class="client-title">
+      总共<b>{{clientListNum}}</b>位联系人
+    </div>
+    <ion-content class="client-centent" ng-class="{'other':searchBox == false}">
+      <ion-refresher
+          pulling-text="下拉刷新..."
+          on-refresh="doRefresh()">
+      </ion-refresher>
+      <ul class="client-list">
+        <li ng-repeat="item in clientListData" ng-click="goDetail('{{item.ID}}')">
+          <p class="title">{{item.Name}}<span class="{{item.Intention | clinetIntentionClass}}">{{item.Intention | clinetIntentionText}}</span></p>
+          <p class="title">{{item.Tel}}</p>
+          <p class="cf short">
+          <span class="ft-gray f-l"><em ng-hide="item.Intention ==2 || item.Intention == 4">{{item.MinPrice}}-</em>{{item.MaxPrice}} <em ng-show="item.Intention ==1 || item.Intention == 2">万/套</em><em ng-show="item.Intention ==3 || item.Intention == 4">元/月</em></span><span class="ft-gray f-l">{{item.Rooms}}室{{item.Halls}}厅{{item.Toilets}}卫</span><span class="ft-gray f-l">{{item.MinArea}}-{{item.MaxAre}}平米</span></p>
+          <p class="cf"><span class="ft-gray f-l">{{item.Intention == 1 || item.Intention==3 ? item.ADDmapName || '无' : item.BuildName || '无'}}</span><span class="ft-gray f-l">{{item.UpdateDate | time}}</span></p>
+          <a href="javascript:;" class="call" ng-click="call('{{item.Tel}}',$event)"><i class="icon ion-ios7-telephone-outline"></i></a>
+        </li>
+      </ul>
+      <p class="nomore" ng-hide="nomore"><span>没有更多数据了</span></p>
+      <ion-infinite-scroll
+          ng-if="nomore"
+          on-infinite="loadMore()"
+          distance="1%">
+      </ion-infinite-scroll>
+    </ion-content>
+  </ion-content>
+</ion-view>

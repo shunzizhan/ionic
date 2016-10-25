@@ -1,0 +1,61 @@
+<ion-view title="客户管理">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-plus-round f-r" ng-click="go('app.report')"></button>
+    <button class="button button-icon icon ion-ios7-search f-r" ng-click="sBox()"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header report-client" scroll="false">
+    <div class="list list-inset" ng-show="searchBox">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="请输入手机号码或者姓名" ng-model="kw.KeyWord"/>
+      </label>
+      <span class="search" ng-click="loadSearch()">搜索</span>
+      <!-- <a href="" class="btn btn-blue">搜索</a> -->
+    </div>
+
+    <ul class="cf client-tab">
+      <li ng-click="chooseBtn(1)">{{StatusText}}<i class="arrow"></i>
+      </li>
+<!--       <li ng-click="chooseBtn(2)">{{StatusText}}<i class="arrow"></i>
+      </li> -->
+    </ul>
+    <div class="client-choose">
+        <ul class="cf" ng-show="choose == 1">
+            <li ng-click="setChoose('status','客户状态 - 不限')">客户状态 - 不限</li>
+            <li ng-click="setChoose('status','成功报备')">成功报备</li>
+            <!-- <li ng-click="setChoose('status','无效客户')">无效客户</li> -->
+            <li ng-click="setChoose('status','有效客户')">有效客户</li>
+            <li ng-click="setChoose('status','带看成功')">带看成功</li>
+            <li ng-click="setChoose('status','已成交')">已成交</li>
+            <!-- <li ng-click="setChoose('status','结佣异常')">结佣异常</li> -->
+            <li ng-click="setChoose('status','结佣中')">结佣中</li>
+            <li ng-click="setChoose('status','已结佣')">已结佣</li>
+            <li ng-click="setChoose('status','报备失效')">报备失效</li>
+        </ul>
+        <!-- <ul class="cf" ng-show="choose == 2">
+            <li ng-click="setChoose('status','状态-不限')">状态-不限</li>
+            <li ng-click="setChoose('status','有效')">有效</li>
+            <li ng-click="setChoose('status','暂缓')">暂缓</li>
+            <li ng-click="setChoose('status','无效')">无效</li>
+        </ul> -->
+    </div>
+    <ion-content class="client-centent" ng-class="{'other':searchBox == false}">
+      <ion-refresher
+          pulling-text="下拉刷新..."
+          on-refresh="doRefresh()">
+      </ion-refresher>
+      <ul class="client-list">
+        <li ng-repeat="item in clientListData" ng-click="goDetail('{{item.ID}}')" class="cf">
+          <p><b>{{item.RealName}}</b>{{item.Phone}} <span class="f-r ft-blue">{{item.Name}}</span></p>
+          <p>{{item.BuildName}}<span class="f-r">{{item.StateTime | timeMain}}</span></p>
+        </li>
+      </ul>
+      <p class="nomore" ng-hide="nomore"><span>暂无客户</span></p>
+      <ion-infinite-scroll
+          ng-if="nomore"
+          on-infinite="loadMore()"
+          distance="1%">
+      </ion-infinite-scroll>
+    </ion-content>
+  </ion-content>
+</ion-view>

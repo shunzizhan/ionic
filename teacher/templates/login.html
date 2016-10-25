@@ -1,0 +1,22 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">亿房宝</h1>
+  </ion-header-bar>
+  <ion-content scroll='false'>
+    <form ng-submit="doLogin()">
+      <div class="list login-form">
+        <label class="item item-input">
+          <input type="text" ng-model="loginData.username" placeholder="请输入用户名">
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="loginData.userpwd" placeholder="请输入密码">
+        </label>
+        <label class="item">
+          <button class="btn-login-in" type="submit"><i class="icon ion-checkmark"></i></button>
+          <!-- <a href="javascript:;" class="btn-login-in" onclick="document.getElementById('login').submit();"><i class="icon ion-checkmark"></i></a> -->
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</div>
+

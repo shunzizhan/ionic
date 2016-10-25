@@ -1,0 +1,30 @@
+<ion-view title="计算结果">
+  <ion-content class="has-header taxes"> 
+	<div class="cf">
+		<div class="cf oldResult">
+			<ul class="cf">
+				<li class="cf">
+					契税：{{oldResultData.qs | number:2}}（元）
+				</li>
+				<li class="cf">
+					营业税：{{oldResultData.yys | number:2}}元
+				</li>
+				<li class="cf">
+					交易印花税：{{oldResultData.jyyh}}（元）
+				</li>
+				<li class="cf">
+					个人所得税：{{oldResultData.grsds | number:2}}（元）
+				</li>
+				<li class="cf">
+					综合地价款：{{oldResultData.zhdjk | number:2}}（元）
+				</li>
+				<li class="cf">
+					合计：<span class="ft-orange">{{oldResultData.qs + oldResultData.yys + oldResultData.grsds + oldResultData.zhdjk | number:2}}（元）</span>
+				</li>
+			</ul>
+			<p class="ft-gray">*以上结果仅供参考</p>
+		</div>
+
+	</div>
+  </ion-content>
+</ion-view>

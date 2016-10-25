@@ -1,0 +1,30 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">期望地点</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="client-add">
+    <div class="list cf area-list">
+      <div class="box">
+        <ion-content>
+        <a class="item" href="javascript:;" ng-repeat="item in mapOne" ng-click="setArea('{{item.FID}}','{{item.FQY}}');setMapStatus('{{item.FID}}')" ng-class="{'cur':mapOneStatus == '{{item.FID}}'}">
+        {{item.FQY}}
+        </a>
+        </ion-content>
+      </div>
+      <div class="box">
+        <ion-content>
+        <a class="item" href="javascript:;" ng-repeat="item in mapTwo" ng-click="setArea('{{item.FID}}','{{item.FQY}}-{{item.FPQ}}')" ng-class="{'cur':clientData.ADDmapFID == '{{item.FID}}'}">
+        {{item.FPQ}}
+        </a>
+        </ion-content>
+      </div>
+    </div>
+      <p class="btn-submit">
+        <button type="button" ng-click="closeDialog()">确 定</button>
+      </p>
+  </ion-content>
+</div>
+

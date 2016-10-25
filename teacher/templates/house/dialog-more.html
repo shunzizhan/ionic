@@ -1,0 +1,79 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">更多信息</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+    <div class="list">
+
+      <div class="item">
+        <span class="title">朝&nbsp;&nbsp;&nbsp;&nbsp;向<em>:</em></span>
+        <div class="item-content">
+          <label class="select full">
+            <i class="arrow"></i>
+            <select name="orientationType" id="" ng-model="housedata.orientationType">
+              <option ng-repeat="item in houseOrientationList" value="{{item.dictItemCode}}">{{item.dictItemValue}}</option>
+            </select>
+            <!-- <select name="orientationType" ng-model="housedatamore.orientationTypeList" ng-options="item.dictItemValue for item in houseOrientationList" ></select> -->
+          </label>
+        </div>
+      </div>
+      <!--20160805  建筑类型：对应-房屋类型，更名为房屋类型 -->
+      <div class="item">
+        <span class="title">房屋类型<em>:</em></span>
+        <div class="item-content">
+          <label class="select full">
+            <i class="arrow"></i>
+            <select name="houseType" id="" ng-model="housedata.houseType">
+              <option ng-repeat="item in houseSourceTypeList" value="{{item.dictItemCode}}">{{item.dictItemValue}}</option>
+            </select>
+            <!-- <select name="houseType" ng-model="housedatamore.houseTypeList" ng-options="item.dictItemValue for item in houseSourceTypeList" ></select> -->
+          </label>
+        </div>
+      </div>
+      <!-- 20160805 权属情况：对应-产权概况，更名为产权概况 -->
+      <div class="item">
+        <span class="title">产权概况<em>:</em></span>
+        <div class="item-content">
+          <label class="select full">
+            <i class="arrow"></i>
+            <select name="prSituation" id="" ng-model="housedata.prSituation">
+              <option ng-repeat="item in propertyRightList" value="{{item.dictItemCode}}">{{item.dictItemValue}}</option>
+            </select>
+            <!-- <select name="prSituation" ng-model="housedatamore.prSituationList" ng-options="item.dictItemValue for item in propertyRightList" ></select> -->
+          </label>
+        </div>
+      </div>
+      <!-- 20160805 登记时间：对应-产权登记年份，更名为产权登记年份 -->
+      <div class="item">
+        <span class="title">产权年份<em>:</em></span>
+        <div class="item-content">
+          <!-- <input type="text" 
+            class="full" 
+            placeholder="点击选择日期" 
+            ng-model="housedatamore.Certdate" 
+            name="Certdate" 
+            ng-click="opendateModal('housedatamore.Certdate')" 
+            readonly> -->
+            <label class="select full">
+              <i class="arrow"></i>
+              <select ng-model="housedata.prSignDate">
+                <option ng-repeat="t in yearList" value="{{t}}">{{t}}年</option>
+              </select>
+            </label>
+        </div>
+      </div>
+      
+      <div class="item" ng-show=" housedata.new == true">
+        <span class="title">房源描述<em>:</em></span>
+        <div class="item-content"><textarea name="" id="" class="full" ng-model="housedata.houseDetailDesc"></textarea></div>
+      </div>
+      <p class="btn-submit">
+        <button type="submit" ng-click="moreSure()">确 定</button>
+      </p>
+    </div>
+  </ion-content>
+</div>
+

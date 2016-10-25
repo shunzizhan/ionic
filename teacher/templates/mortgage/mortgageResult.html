@@ -1,0 +1,33 @@
+<ion-view title="计算结果">
+    <ion-content class="has-header taxes">
+        <div class="cf">
+            <div class="cf newResult">
+                <ul class="cf">
+                    <li class="cf" id="qqId">
+                        贷款总额：
+                        {{result.mortgage_cal*10000}}（元）
+
+                    </li>
+                    <li class="cf">
+                        还款总额：{{result.mortgage_sum_loan}}（元）
+                    </li>
+                    <li class="cf">
+                        支付利息：{{result.mortgage_interest}}（元）
+                    </li>
+                    <li class="cf">
+                        贷款月数：{{result.mortgage_months}}（月）
+                    </li>
+                    <li class="cf">
+                        月均还款：
+                        <div  ng-style="style1"  ng-repeat="pay in result.mortgage_pay_per_month track by $index">
+                            <span   ng-style="style2" >{{$index+1}}月，</span>{{pay}}（元）
+                        </div>
+                    </li>
+
+                </ul>
+                <p class="ft-gray">*以上结果仅供参考</p>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

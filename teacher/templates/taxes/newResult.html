@@ -1,0 +1,31 @@
+<ion-view title="计算结果">
+  <ion-content class="has-header taxes"> 
+	<div class="cf">
+		<div class="cf newResult">
+			<ul class="cf">
+				<li class="cf">
+					房价总额：
+					{{newResultData.fjze | number:2}}（元）
+				</li>
+				<li class="cf">
+					工本印花税：{{newResultData.gbyh | number:2}}元
+				</li>
+				<li class="cf">
+					交易印花税：{{newResultData.jyyh}}（元）
+				</li>
+				<li class="cf">
+					契税：{{newResultData.qs| number:2}}（元）
+				</li>
+				<li class="cf">
+					房屋交易手续费：{{newResultData.fwjysxf | number:2}}（元）
+				</li>
+				<li class="cf">
+					房屋登记费：{{newResultData.fwdjf | number:2}}（元）
+				</li>
+			</ul>
+			<p class="ft-gray">*以上结果仅供参考</p>
+		</div>
+
+	</div>
+  </ion-content>
+</ion-view>

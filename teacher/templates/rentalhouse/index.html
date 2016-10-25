@@ -1,0 +1,127 @@
+
+<ion-view title="住宅出租" hide-back-button="true">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon" ng-click="closeMenu(this)"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-plus-round" ng-click="closeMenu(this);go('app.rentalhouseAdd')"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header house" scroll="false">
+
+    <ul class="tab-head">
+    		<li ng-class="status == 1 ? 'cur' : '' "  ng-click="setTab(1)" >已发布房源</li>
+    		<li ng-class="status == 2 ? 'cur' : '' "  ng-click="setTab(2)">未发布房源</li>
+    </ul>
+    <div class="cf">
+    	    <!--已发布房源开始-->
+    		<div ng-show="status == 1" class="house-list">
+          <ion-content class="rentalhouse-content">
+    			<ion-refresher
+	                pulling-text="松开刷新..."
+	                on-refresh="rhlistDoRefresh()">
+	            </ion-refresher>
+	            <form id="roneCheck">
+    			<ul class="cf">    				
+    				<li class="cf" ng-repeat="rhlistData in rhlistDatas">
+    					<p>{{rhlistData.fname}}</p>
+    					<div class="cf">
+    						<span class="ft-orange">{{rhlistData.price}}元/月</span><span class="ft-gray">{{rhlistData.rooms}}室{{rhlistData.halls}}厅 - {{rhlistData.barea}}平</span>
+    						<label class="checkbox f-r">
+							   <input type="checkbox" name="{{rhlistData.fid}}" ng-click="CheckoneCheck()">
+							</label>   
+    					</div>
+    					<p><span class="ft-gray">{{rhlistData.modifiedon?rhlistData.modifiedon:rhlistData.createdon}}</span><span class="ft-gray">{{rhlistData.fid}}</span></p>
+    					<div class="touch" ng-click="showMenu({{rhlistData}},1)"></div>
+    				</li>
+    				<!--{{rhlistData.modifiedon | rhlistData.createdon}}
+    					<li class="cf" on-hold="onHold()"  ng-click="showMenu(id)">
+    					<p>福星惠鄄城</p>
+    					<div class="cf">
+    						<span class="ft-orange">130.5万</span><span class="ft-gray">三室-两厅 130平</span>
+    						<label class="checkbox f-r" ng-show="oneCheckShow">
+							<input type="checkbox" name="house1" ng-checked="oneChecked">
+    					</div>
+    					<p><span class="ft-gray">2012-12-12 12:12</span><span class="ft-gray">121212121212</span></p>
+    				</li>
+    				</li>-->    				
+    			</ul>
+    			</form>    			
+    			<p class="nomore"><span>{{rhlistmoreTishi}}</span></p>
+    			<ion-infinite-scroll
+    				ng-if="rhlistNomore"  						
+    				on-infinite="rhlistLoadMore()"
+    				distance="1%">
+  				</ion-infinite-scroll>
+          </ion-content>
+    		</div>
+    		<!--已发布房源结束-->
+    		
+    		<!--待发布房源开始-->
+    		<div ng-show="status == 2" class="house-list">
+          <ion-content class="rentalhouse-content">
+    			<ion-refresher
+              pulling-text="松开刷新..."
+              on-refresh="rhlistWeDoRefresh()">
+          </ion-refresher>
+          		<form id="rtwoCheck">
+	    		<ul class="cf">
+	    			<li class="cf" ng-repeat="rhlistWeDatas in rhlistWeDatas">
+						<p>{{rhlistWeDatas.fname}}</p>
+    					<div class="cf">
+    						<span class="ft-orange">{{rhlistWeDatas.price}}元/月</span><span class="ft-gray">{{rhlistWeDatas.rooms}}室{{rhlistWeDatas.halls}}厅 - {{rhlistWeDatas.barea}}平</span>
+    						<label class="checkbox f-r">
+							<input type="checkbox" name="{{rhlistWeDatas.fid}}" ng-click="ChecktwoCheck()">
+							</label>
+    					</div>
+    					<p><span class="ft-gray">{{rhlistWeDatas.modifiedon?rhlistWeDatas.modifiedon:rhlistWeDatas.createdon}}</span><span class="ft-gray">{{rhlistWeDatas.fid}}</span></p>
+    					<div class="touch" ng-click="showMenu({{rhlistWeDatas}},2)"></div>
+					</li>
+					<!--<li class="cf" on-hold="onHold()"  ng-click="showMenu(id)">
+						<p>福星惠鄄城</p>
+						<div class="cf">
+							<span class="ft-orange">130.5万</span><span class="ft-gray">三室-两厅 130平</span>
+							<label class="checkbox f-r" ng-show="twoCheckShow">
+							<input type="checkbox" name="house2" ng-checked="twoChecked">
+						</label>
+						</div>
+						<p><span class="ft-gray">2012-12-12 12:12</span><span class="ft-gray">121212121212</span></p>
+					</li>-->
+	    		</ul>
+	    		</form>
+	    		<p class="nomore"><span>{{rhlistWemoreTishi}}</span></p>
+	    		<ion-infinite-scroll
+    				ng-if="rhlistWeNomore"  						
+    				on-infinite="rhlistWeLoadMore()"
+    				distance="1%">
+  				</ion-infinite-scroll>
+          </ion-content>
+    		</div>
+    		<!--待发布房源结束-->
+    </div>
+  </ion-content>
+   <ion-footer-bar  class="house-foot">
+   <ul class="cf">
+    		<li ng-click="allchecked()" ng-show="status == 1">{{hfnavStuText}}</li>
+    		<li ng-click="ReleaseAll()" ng-show="status == 1">批量重发</li>
+    		<li ng-click="allchecked()" ng-show="status == 2">{{hfnavWeStuText}}</li>
+    		<li ng-click="PublishAll()" ng-show="status == 2">批量发布</li>
+    		<!--<li ng-click="hideCheck()">取消</li>-->
+    </ul>
+  </ion-footer-bar>
+	<div id="rhouse">  
+	<div class="zz" ng-click="closeMenu(this)"></div>
+		<!--菜单-->
+
+   	<div class="foot-menu">
+   		<ul class="ico-menu cf">
+   			<li><a href="#/app/rentalhouse/add/{{ctrlId}}" ng-click="closeMenu()"><div class="ico-box"><span class="icon ion-ios7-compose-outline"></span></div><p>编辑房源</p></a></li>
+   			<li ng-show="status == 1" ng-click="unPublish()"><div class="ico-box"><span class="icon ion-ios7-cloud-download-outline"></span></div><p>取消发布</p></li>
+   			<li ng-show="status == 1" ng-click="Release()"><div class="ico-box"><span class="icon ion-ios7-loop"></span></div><p>重新发布</p></li>
+   			<li ng-show="status == 2" ng-click="Delete()"><div class="ico-box"><span class="icon ion-ios7-trash-outline"></span></div><p>删除房源</p></li>   			
+   			<li ng-show="status == 2" ng-click="Publish()"><div class="ico-box"><span class="icon ion-ios7-cloud-upload-outline"></span></div><p>发布房源</p></li>
+   		</ul>
+   		<p><a href="javascript:;" class="btn btn-gray" ng-click="closeMenu(this)">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</a></p>
+   	</div>
+   	</div>
+</ion-view>

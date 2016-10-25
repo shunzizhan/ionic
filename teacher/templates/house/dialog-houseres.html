@@ -1,0 +1,25 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">房源标签</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+    <div class="list base-list">
+    	<div class="item" ng-repeat="hBSDatas in housedictCatCodeData" >        
+        <div class="item-content {{$index}}">{{hBSDatas.dictItemValue}}
+            <label class="checkbox">
+              <!-- <input type="checkbox" ng-model="houseBaseboxs[$index]" class="{{$index}}"> -->
+              <input type="checkbox" ng-model="houseBaseTageboxs[$index]" >
+            </label>
+        </div>
+      </div>
+    	
+      <p class="btn-submit">
+        <button type="submit" ng-click="baseTagetrue()">确 定</button>
+      </p>
+    </div>
+  </ion-content>
+</div>
+

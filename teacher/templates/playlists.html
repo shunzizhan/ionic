@@ -1,0 +1,23 @@
+<!-- <ion-view title="" hide-back-button="false">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="">
+    <ul class="index-list cf">
+      <li ng-repeat="playlist in playlists | orderBy:orderType" ng-class="{'hide':playlist.alias == 'record'}">
+      	<a ng-href="#/app/{{playlist.alias}}" target="_self">
+	      	<p><img ng-src="{{playlist.ico}}" alt="" width="40" height="40"/> <span>{{playlist.title}}</span></p>
+        </a>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view> -->
+<ion-content class="">
+    <ul class="index-list cf">
+      <li ng-repeat="playlist in playlists | orderBy:orderType" ng-class="{'hide':playlist.alias == 'record'}">
+        <a ng-href="#/app/{{playlist.alias}}" target="_self">
+          <p><img ng-src="{{playlist.ico}}" alt="" width="40" height="40"/> <span>{{playlist.title}}</span></p>
+        </a>
+      </li>
+    </ul>
+  </ion-content>

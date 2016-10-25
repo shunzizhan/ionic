@@ -1,0 +1,23 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">选择意向楼盘</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input id="searchPLKey" class="ng-pristine ng-valid ng-touched" placeholder="请输入返佣楼盘" ng-model="searchPLKey" type="text">
+      </label>
+      <span class="search" ng-click="searchPList()">搜索</span>
+    </div>
+	    <div class="list">
+	      <a class="item" href="javascript:;"  ng-repeat="item in propertyList | filter:searchPLKey" ng-click="propertyListClick('{{item | json}}')" val-add="{{item.RegionName}}{{item.custerm}}" ng-show="item.IsShow == 1">
+	      {{item.BuildName}}
+	      </a>
+	    </div>
+  </ion-content>
+</div>
+

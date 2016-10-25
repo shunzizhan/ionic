@@ -1,0 +1,30 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">所在区域</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="client-add" scroll="false">
+    <div class="list cf area-list">
+      <div class="box">
+        <ion-content>
+        <a class="item" href="javascript:;" ng-repeat="item in rgmapOne" ng-click="setMapStatus('{{item.FID}}')" ng-class="{'cur':rgmapOneStatus == '{{item.FID}}'}">
+        {{item.FQY}}
+        </a>
+        </ion-content>
+      </div>
+      <div class="box">
+        <ion-content>
+        <a class="item" href="javascript:;" ng-repeat="item in rgmapTwo" ng-click="setArea({{item}})" ng-class="{'cur':housedata.ADDmapFID == '{{item.FID}}'}">
+        {{item.FPQ}}
+        </a>
+        </ion-content>
+      </div>
+    </div>
+      <p class="btn-submit">
+        <button type="button" ng-click="areaSure()">确 定</button>
+      </p>
+  </ion-content>
+</div>
+

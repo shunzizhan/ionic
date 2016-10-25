@@ -1,0 +1,59 @@
+<ion-view title="客户详情">
+  <ion-content class="has-header client-detail">
+  	<div class="list list-inset">
+		<div class="item">
+			<div class="title">客户类型<em>:</em></div>
+			{{clientData.Intention | clinetIntentionText}} <span class="{{clientData.Status | clinetIntentionClass}}">{{clientData.Status | clinetStatusText }}</span>
+		</div>
+		<div class="item">
+			<div class="title">客户姓名<em>:</em></div>
+			{{clientData.Name}}
+		</div>
+		<div class="item">
+			<div class="title">客户电话<em>:</em></div>
+			{{clientData.Tel}}
+		</div>
+		<div class="item" ng-show="clientData.Intention == 1 || clientData.Intention == 3">
+			<div class="title">期望地点<em>:</em></div>
+			{{clientData.ADDmapName}}
+		</div>
+		<div class="item" ng-show="clientData.Intention == 2 || clientData.Intention == 4">
+			<div class="title">楼盘名称<em>:</em></div>
+			{{clientData.BuildName}}
+		</div>
+		<div class="item">
+			<div class="title">户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型<em>:</em></div>
+			{{clientData.Rooms}}室{{clientData.Halls}}厅{{clientData.Toilets}}卫
+		</div>
+		<div class="item" ng-show="clientData.Intention == 1 || clientData.Intention == 2">
+			<div class="title">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价<em>:</em></div>
+			<em ng-hide="clientData.Intention ==2">{{clientData.MinPrice}}-</em>{{clientData.MaxPrice}}万/套
+		</div>
+		<div class="item" ng-show="clientData.Intention == 3 || clientData.Intention == 4">
+			<div class="title">租&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金<em>:</em></div>
+			<em ng-hide="clientData.Intention == 4">{{clientData.MinPrice}}-</em>{{clientData.MaxPrice}}元/月
+		</div>
+		<div class="item">
+			<div class="title">面&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;积<em>:</em></div>
+			{{clientData.MinArea}}-{{clientData.MaxAre}}平米
+		</div>
+		<div class="item" ng-show="clientData.Intention == 2 || clientData.Intention == 4">
+			<div class="title">楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层<em>:</em></div>
+			{{clientData.Floor}}层，总共{{clientData.Floors}}层
+		</div>
+		<div class="item">
+			<div class="title">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注<em>:</em></div>
+			{{clientData.Remark}}
+		</div>
+		<div class="item">
+			<div class="title">更新时间<em>:</em></div>
+			{{clientData.UpdateDate}}
+		</div>
+		<div class="item">
+			<div class="t-box"><a href="javascript:;" ng-click="call('{{clientData.Tel}}',$event)"><span class="icon ion-ios7-telephone-outline"></span></a></div>
+			<div class="t-box"><a href="#/app/clientAdd/{{clientData.ID}}"><span class="icon ion-ios7-compose-outline"></span></a></div>
+			<div class="t-box"><a href="javascript:;" ng-click="del()"><span class="icon ion-ios7-trash-outline"></span></a></div>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

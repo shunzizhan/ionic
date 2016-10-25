@@ -1,0 +1,43 @@
+<ion-side-menus>
+  <ion-side-menu-content>
+   <!--  <ion-nav-bar class="bar-stable nav-title-slide-ios">
+      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i></ion-nav-back-button>
+    </ion-nav-bar> -->
+    
+  <ion-tabs class="tabs-positive tabs-icon-only">
+    <ion-tab title="我的" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+      <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="动态" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline">
+    </ion-tab>
+    <ion-tab title="资讯" icon-on="ion-ios7-gear" icon-off="ion-ios7-gear-outline">
+    </ion-tab>
+  </ion-tabs>
+  
+  </ion-side-menu-content>
+  <ion-side-menu side="right">
+    <ion-content scrollbar-y="false" >
+      <ion-list>
+        <ion-item nav-clear menu-close href="#/app/{{playlists[0].alias}}">
+            <i class="icon ion-chevron-right item-note"></i>登录注册
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/{{playlists[6].alias}}">
+            <i class="icon ion-chevron-right item-note"></i>修改密码
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/{{playlists[2].alias}}">
+            <i class="icon ion-chevron-right item-note"></i>仅wifi联网
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/{{playlists[7].alias}}">
+            <i class="icon ion-chevron-right item-note"></i>换肤
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/{{playlists[7].alias}}">
+            <i class="icon ion-chevron-right item-note"></i>反馈意见
+        </ion-item>
+         <br />
+        <ion-item nav-clear menu-close href="#/app/{{playlists[7].alias}}">
+            <i class="icon ion-chevron-right item-note"></i>退出
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

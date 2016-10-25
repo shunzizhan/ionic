@@ -1,0 +1,32 @@
+<ion-view title="返佣楼盘" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header sell">
+    <ion-refresher
+        pulling-text="下拉刷新..."
+        on-refresh="doRefresh()">
+    </ion-refresher>
+    <ul class="cf sell-list">
+
+    		<li class="cf" ng-repeat="item in sellListData track by $index" ng-show='item.IsShow == 1'>
+            <a ng-href="#/app/sell/{{item.BaseID}}"><p>{{item.BuildName}}</p>
+            <p>区域：{{item.RegionName}} <span class="f-r">均价：{{item.Avegprice}}</span></p></a>
+       <!--      <p>单价：{{item.CommsionAverage | sellAverage}} 元/㎡</p>
+            <p>特惠：{{item.CommsionActive | sellActive}}</p> -->
+            <p class="ft-orange">最高佣金：{{ item.Commission == 0 ? '待定' : item.Commission}}{{item.Unit}}<a ng-href="#/app/report/{{item.BaseID}}" class="f-r report-btn">报备客户</a></p>
+        </li>
+    </ul>
+    <p class="nomore" ng-hide="nomore"><span>没有更多数据了</span></p>
+    <ion-infinite-scroll
+        ng-if="nomore"
+        on-infinite="loadMore()"
+        distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+  <ion-footer-bar  class="sell-foot">
+    <a href="#/app/reportClient">
+      <i class="icon ion-ios7-people-outline"></i>已报备客户列表
+    </a>
+  </ion-footer-bar>
+</ion-view>

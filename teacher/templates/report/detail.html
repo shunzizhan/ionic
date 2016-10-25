@@ -1,0 +1,23 @@
+<ion-view title="客户详情">
+  <ion-content class="has-header report-client-detail">
+    <div class="title">
+    	<h3>{{clientDetail[0].RealName}}<i class="icon ion-ios7-compose-outline" ng-click="editName()"></i></h3>
+    	<p class="ft-gray">{{clientDetail[0].Phone}}</p>
+    </div>
+    <p class="ft-gray">{{clientDetail[0].BuildName}}</p>
+    <ul class="result-list cf">
+      <li ng-repeat="item in clientDetail track by $index">
+        <p>{{item.Name}}&nbsp;&nbsp;<span class='ft-orange' ng-show="(item.Name == '成功报备' || item.Name == '带看成功') && clientDetailShow && clientDetailShow2">截止:{{item.ExpDate | timeMain}}</span></p>
+        <p class="ft-gray">{{item.StateTime | timeMain}}</p>
+      </li>
+      <!-- <li ng-class="{'cur':clientDetail.Name=='成功报备'}"><p>成功报备（有效期72小时）</p><p>{{clientDetail.StateTime | timeMain}}</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='有效客户'}"><p>有效客户</p><p>&nbsp;</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='带看成功'}"><p>带看成功</p><p>&nbsp;</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='成交'}"><p>成交</p><p>&nbsp;</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='结佣中'}"><p>结佣中</p><p>&nbsp;</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='已结佣'}" ng-if="clientDetail.Name=='已结佣'"><p>已结佣</p><p>&nbsp;</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='报备失效'}" ng-if="clientDetail.Name=='报备失效'"><p>报备失效</p><p>&nbsp;</p></li>
+      <li ng-class="{'cur':clientDetail.Name=='结佣异常'}" ng-if="clientDetail.Name=='结佣异常'"><p>结佣异常</p><p>&nbsp;</p></li> -->
+    </ul>
+  </ion-content>
+</ion-view>

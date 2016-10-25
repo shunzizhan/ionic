@@ -1,0 +1,98 @@
+
+<ion-view title="{{title}}">
+
+  <ion-content class="has-header client-add">
+
+	<div class="list">
+		<form ng-submit='submit()'>
+		<div class="item item-divider">
+			客户需求
+		</div>
+		<div class="item">
+			<span class="title">意向类型<em>:</em></span>
+			<div class="item-content">
+				<label class="select full">
+					<i class="arrow"></i>
+					<select ng-model="clientData.Intention" ng-options="item.val as item.text for item in IntentionType"></select>
+				</label>
+			</div>
+		</div>
+		<div class="item">
+			<span class="title">所在城市<em>:</em></span>
+			<div class="item-content">{{clientData.CityName}}</div>
+		</div>
+		<div class="item right-arrow" ng-show="clientData.Intention != 4 && clientData.Intention != 2">
+			<span class="title">期望地点<em>:</em></span>
+			<div class="item-content" ng-click="areaChoose()"><input type="text" placeholder="点击选取地点" class="full" ng-model="clientData.ADDmapName" readonly></div>
+		</div>
+		<div class="item right-arrow" ng-show="clientData.Intention == 4 || clientData.Intention == 2">
+			<span class="title">楼盘名称<em>:</em></span>
+			<div class="item-content" ng-click="propertyChoose()"><input type="text" placeholder="点击选取楼盘" class="full" ng-model="clientData.BuildName" readonly></div>
+		</div>
+		<div class="item">
+			<span class="title">户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型<em>:</em></span>
+			<div class="item-content"><div class="full i-house"><input type="number" class="" string-to-number placeholder="大于0"  ng-model="clientData.Rooms"/><em>室</em><input type="number" class="" string-to-number placeholder="大于0"  ng-model="clientData.Halls"/><em>厅</em><input type="number" class="" string-to-number placeholder="大于0"  ng-model="clientData.Toilets"/><em>卫</em></div></div>
+		</div>
+		<div class="item" ng-show="clientData.Intention != 4 && clientData.Intention != 3">
+			<span class="title">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价<em>:</em></span>
+			<div class="item-content">
+				<div class="i-price full">
+					<input type="number" class="" string-to-number placeholder="大于0" ng-model="clientData.MinPrice" ng-show="clientData.Intention == 1 || clientData.Intention == 3"/>
+					<em ng-show="clientData.Intention == 1 || clientData.Intention == 3">-</em>
+					<input type="number" class="" string-to-number placeholder="大于0" ng-model="clientData.MaxPrice" ng-class="{'full':clientData.Intention == 2 || clientData.Intention == 4}"/>
+				</div>
+			</div>
+		</div>
+		<div class="item" ng-show="clientData.Intention != 3">
+			<span class="title">面&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;积<em>:</em></span>
+			<div class="item-content"><div class="i-area full"><input type="number" class="" string-to-number placeholder="大于0" ng-model="clientData.MinArea" /><em>-</em><input type="number" class="" string-to-number placeholder="大于0" ng-model="clientData.MaxAre" /></div></div>
+		</div>
+		<div class="item" ng-show="clientData.Intention == 4 || clientData.Intention == 3">
+			<span class="title">租&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金<em>:</em></span>
+			<div class="item-content">
+				<div class="i-price2 full">
+					<input type="number" class="" string-to-number placeholder="大于0" ng-model="clientData.MinPrice" ng-show="clientData.Intention == 1 || clientData.Intention == 3"/>
+					<em ng-show="clientData.Intention == 1 || clientData.Intention == 3">-</em>
+					<input type="number" class="" string-to-number placeholder="大于0" ng-model="clientData.MaxPrice" ng-class="{'full':clientData.Intention == 2 || clientData.Intention == 4}"/></div></div>
+		</div>
+		<div class="item" ng-show="clientData.Intention == 4 || clientData.Intention != 3 && clientData.Intention != 1">
+			<span class="title">楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层<em>:</em></span>
+			<div class="item-content"><div class="i-floor full"><input type="number" string-to-number class="" placeholder="大于0数字" ng-model="clientData.Floor" /><em>层,共</em><input type="number" string-to-number class="" placeholder="大于0数字" ng-model="clientData.Floors" /></div></div>
+		</div>
+		<div class="item">
+			<span class="title">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注<em>:</em></span>
+			<div class="item-content"><textarea name="" id="" class="full" ng-model="clientData.Remark"></textarea></div>
+		</div>
+		<div class="item item-divider">
+			客户信息
+		</div>
+		<div class="item">
+			<span class="title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名<em>:</em></span>
+			<div class="item-content"><input type="text" class="full" placeholder="请填写8个字以内的汉字" ng-model="clientData.Name"/></div>
+		</div>
+		<div class="item">
+			<span class="title">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话<em>:</em></span>
+			<div class="item-content"><input type="text" class="full" placeholder="请填写手机或者固定电话" ng-model="clientData.Tel"/></div>
+		</div>
+		<div class="item">
+			<span class="title">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别<em>:</em></span>
+			<div class="item-content"><label class="radio"><input type="radio" ng-model="clientData.Sex" value="1" />男</label><label class="radio"><input type="radio" ng-model="clientData.Sex" value="2" />女</label></div>
+		</div>
+		<div class="item">
+			<span class="title">客户状态<em>:</em></span>
+			<div class="item-content">
+				<label class="select full">
+					<i class="arrow"></i>
+					<select ng-model="clientData.Status" ng-options="item.val as item.text for item in StatusType"></select>
+				</label>
+			</div>
+		</div>
+		<p class="btn-submit">
+			<button type="submit">保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+		</p>
+		</form>
+	</div>
+
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,76 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">基础设施</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDialog()"><i class="icon ion-close"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="house-add">
+    <div class="list base-list">
+    	<div class="item" ng-repeat="hBSDatas in houseBaseServiceData">        
+        <div class="item-content">{{hBSDatas.text}}
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[$index]">
+            </label>
+        </div>
+      </div>
+    	
+    	
+      <!--<div class="item">        
+        <div class="item-content">煤气管道
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[0]">
+            </label>
+        </div>
+      </div>	
+      <div class="item">        
+        <div class="item-content">独水表
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[1]">
+            </label>
+        </div>
+      </div>    	
+      <div class="item">        
+        <div class="item-content">独电表
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[2]">
+            </label>
+        </div>
+      </div>	
+      <div class="item">        
+        <div class="item-content">宽带
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[3]">
+            </label>
+        </div>
+      </div>
+      <div class="item">        
+        <div class="item-content">有线电视
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[4]">
+            </label>
+        </div>
+      </div>	
+      <div class="item">        
+        <div class="item-content">电梯
+            <label class="checkbox">
+              <input type="checkbox" ng-model="houseBaseboxs[5]">
+            </label>
+        </div>
+      </div>      -->
+
+      <!--<div class="item">        
+        <div class="item-content">小摊
+            <label class="checkbox">
+              <input type="checkbox">
+            </label>
+        </div>
+      </div>-->
+
+      <p class="btn-submit">
+        <button type="submit" ng-click="baseture()">确 定</button>
+      </p>
+    </div>
+  </ion-content>
+</div>
+
